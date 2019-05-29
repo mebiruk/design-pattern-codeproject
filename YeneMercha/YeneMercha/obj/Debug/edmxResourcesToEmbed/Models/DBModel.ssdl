@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YeneMerchaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Candidate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="election_id" Type="int" />
+    <Property Name="name" Type="varchar(max)" />
+    <Property Name="about" Type="varchar(max)" />
+    <Property Name="pic" Type="image" />
+    <Property Name="pic_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Catagory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Election">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar(max)" />
+    <Property Name="description" Type="varchar(max)" />
+    <Property Name="start_date" Type="datetime" />
+    <Property Name="stop_date" Type="datetime" />
+    <Property Name="catagory_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar(max)" />
+    <Property Name="content" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="question" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="role" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="varchar(max)" />
+    <Property Name="last_name" Type="varchar(max)" />
+    <Property Name="username" Type="varchar(max)" />
+    <Property Name="password" Type="varchar(max)" />
+    <Property Name="email" Type="varchar(max)" />
+    <Property Name="address" Type="varchar(max)" />
+    <Property Name="question_id" Type="int" />
+    <Property Name="answer" Type="varchar(max)" />
+    <Property Name="role_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Vote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="candidate_id" Type="int" />
+    <Property Name="count" Type="int" />
+  </EntityType>
+  <Association Name="FK_candidate_id">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vote">
+        <PropertyRef Name="candidate_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_catagory_id">
+    <End Role="Catagory" Type="Self.Catagory" Multiplicity="0..1" />
+    <End Role="Election" Type="Self.Election" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catagory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Election">
+        <PropertyRef Name="catagory_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_election_id">
+    <End Role="Election" Type="Self.Election" Multiplicity="0..1" />
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Election">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="election_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pic_id">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="pic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_question_id">
+    <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_role_id">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_id">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vote">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YeneMerchaDBModelStoreContainer">
+    <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Catagory" EntityType="Self.Catagory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Election" EntityType="Self.Election" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_candidate_id" Association="Self.FK_candidate_id">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Vote" EntitySet="Vote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_catagory_id" Association="Self.FK_catagory_id">
+      <End Role="Catagory" EntitySet="Catagory" />
+      <End Role="Election" EntitySet="Election" />
+    </AssociationSet>
+    <AssociationSet Name="FK_election_id" Association="Self.FK_election_id">
+      <End Role="Election" EntitySet="Election" />
+      <End Role="Candidate" EntitySet="Candidate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pic_id" Association="Self.FK_pic_id">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Candidate" EntitySet="Candidate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_question_id" Association="Self.FK_question_id">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_role_id" Association="Self.FK_role_id">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_id" Association="Self.FK_user_id">
+      <End Role="User" EntitySet="User" />
+      <End Role="Vote" EntitySet="Vote" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

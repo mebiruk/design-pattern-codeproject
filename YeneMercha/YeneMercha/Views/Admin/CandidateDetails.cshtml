@@ -1,0 +1,37 @@
+﻿@model YeneMercha.Models.Candidate
+
+@{
+    ViewBag.Title = "CandidateDetails";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Election.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.about)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.about)
+        </dd>
+
+    </dl>
+</div>
+<p>
+</p>

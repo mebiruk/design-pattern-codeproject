@@ -1,0 +1,40 @@
+﻿@model IEnumerable<YeneMercha.Models.Candidate>
+
+@{
+    ViewBag.Title = "ElectionDetail";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.about)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Election.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.about)
+        </td>
+        <td>
+            @Html.ActionLink("Vote", "vote", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

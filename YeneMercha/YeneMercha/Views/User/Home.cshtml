@@ -1,0 +1,194 @@
+﻿@model IEnumerable<YeneMercha.Models.Election>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    body {
+        
+    }
+    html {
+        font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font-size: 14px;
+    }
+
+    .textcolor {
+        color: white;
+    }
+    body {
+        padding-top: 56px;
+    }
+
+    .containerColor {
+        background-color: #a3a3c2;
+        color:white;
+    }
+
+    .buttonColor {
+        background-color:orangered;
+    }
+
+    h5 {
+        font-size: 1.28571429em;
+        font-weight: 700;
+        line-height: 1.2857em;
+        margin: 0;
+    }
+
+    .card {
+        font-size: 1em;
+        overflow: hidden;
+        padding: 0;
+        border: none;
+        border-radius: .28571429rem;
+        box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    }
+
+    .card-block {
+        font-size: 1em;
+        position: relative;
+        margin: 0;
+        padding: 1em;
+        border: none;
+        border-top: 1px solid rgba(34, 36, 38, .1);
+        box-shadow: none;
+    }
+
+    .card-img-top {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .card-title {
+        font-size: 1.28571429em;
+        font-weight: 700;
+        line-height: 1.2857em;
+    }
+
+    .card-text {
+        clear: both;
+        margin-top: .5em;
+        color: rgba(0, 0, 0, .68);
+    }
+
+    .card-footer {
+        font-size: 1em;
+        position: static;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        padding: .75em 1em;
+        color: rgba(0, 0, 0, .4);
+        border-top: 1px solid rgba(0, 0, 0, .05) !important;
+        background: #fff;
+    }
+
+    .card-inverse .btn {
+        border: 1px solid rgba(0, 0, 0, .05);
+    }
+
+    .profile {
+        position: absolute;
+        top: -12px;
+        display: inline-block;
+        overflow: hidden;
+        box-sizing: border-box;
+        width: 25px;
+        height: 25px;
+        margin: 0;
+        border: 1px solid #fff;
+        border-radius: 50%;
+    }
+
+    .profile-avatar {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .profile-inline {
+        position: relative;
+        top: 0;
+        display: inline-block;
+    }
+
+        .profile-inline ~ .card-title {
+            display: inline-block;
+            margin-left: 4px;
+            vertical-align: top;
+        }
+
+    .text-bold {
+        font-weight: 700;
+    }
+
+    .col-lg-7 {
+        padding:10px;
+    }
+
+    .meta {
+        font-size: 1em;
+        color: rgba(0, 0, 0, .4);
+    }
+
+        .meta a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, .4);
+        }
+
+            .meta a:hover {
+                color: rgba(0, 0, 0, .87);
+            }
+</style>
+<body>
+ <div class="row my-5">
+        
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Choose For The best</h1>
+            <p>
+                This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components.
+                Feel free to use this template for any project you want!
+                Fanton is one simple Bootstrap template that you can utilize for your consulting and other business service needs. It comes with a stunning, clean and to-the-point web design that will do you well. Fanton also sports four different homes that offer you to pick the right look for your firm quickly. Bear in mind, once you have the look you fancy most, feel free to edit and enhance it and make it follow your branding.
+                This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components.
+                Feel free to use this template for any project you want!
+                Fanton is one simple Bootstrap template that you can utilize for your consulting and other business service needs. It comes with a stunning, clean and to-the-point web design that will do you well. Fanton also sports four different homes that offer you to pick the right look for your firm quickly. Bear in mind, once you have the look you fancy most, feel free to edit and enhance it and make it follow your branding.
+
+                You can effortlessly customize Fanton to swiftly craft a page that will push your service to new levels. Fanton comes with many amazing features, like wide slider, call-to-action buttons, hover and parallax effects, testimonials and blog section. Contact page is fully equipped with a working form and Google Maps while footer catches their emails with newsletter subscription widget.
+            </p>
+        </div>
+        <div class="col-lg-7">
+            <img class="img-rounded" src="../images/vote.jpg" style="width:900px;height:600px;"/>
+        </div>
+    </div>
+    
+
+    <h4>Recent Elections</h4>
+    @foreach (var item in Model)
+    {
+
+        <div class="container row">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                    <div class="card containerColor">
+                        
+                        <div class="card-block containerColor">
+
+                            <h4 class="card-title mt-3">@Html.DisplayFor(modelItem => item.title)</h4>
+
+                            <div class="card-text containerColor">
+                                @Html.DisplayFor(modelItem => item.description)
+                            </div>
+                            <div class="card-text containerColor">
+                                <h6>Start from @Html.DisplayFor(modelItem => item.start_date) to @Html.DisplayFor(modelItem => item.stop_date)</h6>
+                            </div>
+                            <a>@Html.ActionLink("Show", "ElectionDetail", new { id = item.Id })</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    </body>

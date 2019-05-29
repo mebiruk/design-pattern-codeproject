@@ -1,0 +1,30 @@
+﻿@model IEnumerable<YeneMercha.Models.Vote>
+
+@{
+    ViewBag.Title = "MyVote";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Candidate
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Candidate.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Candidate.name)
+        </td>
+    </tr>
+}
+
+</table>

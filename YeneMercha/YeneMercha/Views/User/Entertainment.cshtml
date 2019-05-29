@@ -1,0 +1,60 @@
+﻿@model IEnumerable<YeneMercha.Models.Election>
+
+@{
+    ViewBag.Title = "Entertainment";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Entertainment</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stop_date)
+        </th>
+        <th>
+            Catagory
+        </th>
+        <th>
+            Action
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stop_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Catagory.name)
+        </td>
+        <td>
+            @Html.ActionLink("Show", "ElectionDetail", new { id=item.Id }) 
+            
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,59 @@
+﻿@model YeneMercha.Models.Election
+
+@{
+    ViewBag.Title = "ElectionDetails";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div>
+    <h4>Election</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stop_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stop_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagory.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

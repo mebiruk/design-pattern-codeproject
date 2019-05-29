@@ -1,0 +1,23 @@
+﻿@model YeneMercha.Models.Image
+
+@{
+    ViewBag.Title = "ImageAdd";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ImageAdd</h2>
+
+@using (Html.BeginForm("ImageAdd", "Admin", FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
+{
+    <div>
+
+
+        Image : <input type="file" name="file" id="file" style="width: 100%;" /> <br /><br />
+
+        <input type="submit" value="Upload image" />
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

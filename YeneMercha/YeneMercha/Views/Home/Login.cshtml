@@ -1,0 +1,191 @@
+﻿@model YeneMercha.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+    background-image:url("../../images/bg-01.jpg");
+    }
+
+    .submit {
+        cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: linear-gradient(to right, #9C27B0, #E040FB);
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .forgot {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #E1BEE7;
+        margin-left:60px;
+    }
+
+    a {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #66b3ff;
+        text-decoration: none
+    }
+
+    .sign {
+        padding-top: 40px;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 23px;
+    }
+
+    .form1 {
+        padding-top: 40px;
+    }
+    .main {
+        background-color: #FFFFFF;
+        width: 500px;
+        height: 400px;
+        margin:auto;
+        margin-top:80px;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+
+    .un {
+        width: 76%;
+        color: rgb(38, 50, 56);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        background: rgba(136, 126, 126, 0.04);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-left: 46px;
+        text-align: center;
+        margin-bottom: auto;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .unE {
+        width: 76%;
+        color: red;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 1px;
+        
+        margin-left: 46px;
+        text-align: center;
+        margin-bottom: 27px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .passE {
+        width: 76%;
+        color: red;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin-left: 46px;
+        text-align: center;
+        margin-bottom: 27px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .pass {
+        width: 76%;
+        color: rgb(38, 50, 56);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        background: rgba(136, 126, 126, 0.04);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-left: 46px;
+        text-align: center;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .lun {
+        width:auto;
+        margin-left: 10px;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .lp {
+        width:100px;
+        margin-left: 10px;
+        margin-right: auto;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+
+    .title {
+        font-family:OCR A Std, monospace;
+        color: white;
+        font-size:40px;
+        text-align: center;
+    }
+</style>
+<body>
+    <h2 class="title">Shine your star!</h2>
+    <div class="main">
+        <p class="sign" align="center">Sign in</p>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal form1">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2 lun" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control  un" } })
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger unE" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2 lun" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control pass" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger unE" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Sign In" class="submit" />
+                </div>
+            </div>
+
+            <div class="row">
+                <a  class="forgot">@Html.ActionLink("create new account", "Register", "Home")</a>
+                <a class="forgot">@Html.ActionLink("Forget Password?", "ForgetPassword", "Home")</a>
+            </div>
+        </div>
+        }
+    </div>
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
